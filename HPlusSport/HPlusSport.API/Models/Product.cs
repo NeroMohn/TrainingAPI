@@ -1,4 +1,5 @@
-﻿using System.Text.Json.Serialization;
+﻿using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace HPlusSport.API.Models
 {
@@ -6,13 +7,16 @@ namespace HPlusSport.API.Models
     {
         public int Id { get; set; }
         public string Sku { get; set; } = string.Empty; // Código de barras*
+        [Required]
         public string Name { get; set; } = string.Empty;
-        public string Description { get; set; } = string.Empty; 
+        public string Description { get; set; } = string.Empty;
+        [Required]
+
         public decimal Price { get; set; }
         public bool IsAvailable { get; set; }
-
+        [Required]
         public int CategoryId { get; set; }
         [JsonIgnore]
-        public virtual Category Category { get; set; }
+        public virtual Category? Category { get; set; }
     }
 }

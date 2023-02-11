@@ -34,5 +34,19 @@ namespace HPlusSport.API.Controllers
             return Ok(product);
         }
 
+        [HttpPost]
+        public async Task<ActionResult<Product>> PostProduct(Product product)
+        {
+            //Usually, use this for validation, but we can add a default input in Program.cs
+            //if (!ModelState.IsValid)
+            //{
+            //    return BadRequest();
+            //}
+            _context.Products.Add(product);
+            await _context.SaveChangesAsync();
+
+            return CreatedAtAction("GetProduct", new { id = product.Id}, product);
+        }
+
     }
 }
